@@ -1,9 +1,9 @@
 ### To package the example run the following from the root dropwizard directory.
     mvn clean package
 ### Creating a local h2 database
-    java -jar ios-chat-1.2.2.jar db migrate example.yml
+    java -jar target/ios-chat-1.2.2.jar db migrate example.yml
 ### Running server
-    java -jar ios-chat-1.2.2.jar server example.yml
+    java -jar target/ios-chat-1.2.2.jar server example.yml
 
 ---
 
