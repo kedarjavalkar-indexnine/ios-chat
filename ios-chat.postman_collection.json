@@ -18,7 +18,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"os\":\"ios\",\n  \"name\":\"pranav\",\n  \"status\":\"active\"\n}"
+					"raw": "{\n  \"os\":\"ios\",\n  \"name\":\"kedar\",\n  \"status\":\"active\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/users",
@@ -68,10 +68,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{ \r\n   \"text\" : \"it this 3st message\",\r\n   \"from\" : \"kedar\",\r\n   \"lastTimestamp\" : 0\r\n}"
+					"raw": "{\r\n\t\"from\" : \"admin\",\r\n\t\"to\":\"kedar\",\r\n\t\"text\" : \"it this 3st message\",\r\n\t\"lastTimestamp\" : 0\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/chat/user/2",
+					"raw": "http://localhost:8080/chat/",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -79,8 +79,7 @@
 					"port": "8080",
 					"path": [
 						"chat",
-						"user",
-						"2"
+						""
 					]
 				},
 				"description": "adds new chat"
@@ -99,7 +98,7 @@
 				],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/chat/user/1/1515057792329?status=read",
+					"raw": "http://localhost:8080/chat/user/admin/0",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -108,15 +107,8 @@
 					"path": [
 						"chat",
 						"user",
-						"1",
-						"1515057792329"
-					],
-					"query": [
-						{
-							"key": "status",
-							"value": "read",
-							"equals": true
-						}
+						"admin",
+						"0"
 					]
 				},
 				"description": ""
@@ -173,7 +165,7 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/chat/user/1/read/1515057792329",
+					"raw": "http://localhost:8080/chat/user/admin/read/0",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -182,9 +174,9 @@
 					"path": [
 						"chat",
 						"user",
-						"1",
+						"admin",
 						"read",
-						"1515057792329"
+						"0"
 					]
 				},
 				"description": ""
