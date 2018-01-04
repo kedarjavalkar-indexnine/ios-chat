@@ -1,8 +1,10 @@
 package com.indexnine.chat;
 
 public class ChatItem {
+
 	private String from;
 	private String msg;
+	private String status;
 	private Long ts;
 
 	public String getFrom() {
@@ -19,6 +21,14 @@ public class ChatItem {
 
 	public void setMsg(String msg) {
 		this.msg = msg;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public Long getTs() {

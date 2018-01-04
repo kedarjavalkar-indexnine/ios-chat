@@ -16,6 +16,7 @@ import com.example.helloworld.health.TemplateHealthCheck;
 import com.example.helloworld.resources.ChatResource;
 import com.example.helloworld.resources.PeopleResource;
 import com.example.helloworld.resources.PersonResource;
+import com.example.helloworld.resources.Resource;
 import com.example.helloworld.tasks.EchoTask;
 
 import io.dropwizard.Application;
@@ -91,5 +92,6 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
 		environment.jersey().register(new PersonResource(dao));
 
 		environment.jersey().register(new ChatResource());
+		environment.jersey().register(new Resource());
 	}
 }
