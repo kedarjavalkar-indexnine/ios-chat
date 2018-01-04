@@ -3,9 +3,18 @@ package com.indexnine.chat;
 public class ChatItem {
 
 	private String from;
+	private String to;
 	private String msg;
 	private String status;
 	private Long ts;
+
+	public String getTo() {
+		return to;
+	}
+
+	public void setTo(String to) {
+		this.to = to;
+	}
 
 	public String getFrom() {
 		return from;

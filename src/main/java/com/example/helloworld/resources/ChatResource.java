@@ -22,7 +22,6 @@ import com.indexnine.chat.ChatList;
 import com.indexnine.chat.ChatRequest;
 
 import io.dropwizard.hibernate.UnitOfWork;
-import io.dropwizard.jersey.params.LongParam;
 
 @Path("/chat")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -32,9 +31,14 @@ public class ChatResource {
 
 	@POST
 	@UnitOfWork
-	@Path("user/{userId}")
-	public List<ChatItem> addChat(@PathParam("userId") LongParam userId, ChatRequest req) {
-		ChatList userChatList = chats.get("" + userId);
+	public List<ChatItem> addChat(ChatRequest req) {
+		String user = "";
+		if (req.getFrom() != null) {
+			user = req.getFrom();
+		} else {
+			user = req.getTo();
+		}
+		ChatList userChatList = chats.get(user);
 
 		if (userChatList == null) {
 			userChatList = new ChatList();
@@ -42,21 +46,22 @@ public class ChatResource {
 
 		ChatItem item = new ChatItem();
 		item.setFrom(req.getFrom());
+		item.setTo(req.getTo());
 		item.setMsg(req.getText());
 		item.setStatus("unread");
 		item.setTs(new Date().getTime());
 
 		userChatList.getChats().add(item);
-		chats.put("" + userId, userChatList);
+		chats.put(user, userChatList);
 
-		return getChatList(userId, req.getLastTimestamp(), null);
+		return getChatList(user, req.getLastTimestamp(), null);
 	}
 
 	@PUT
 	@UnitOfWork
-	@Path("user/{userId}/read/{timestamp}")
-	public Response readChat(@PathParam("userId") LongParam userId, @PathParam("timestamp") Long timestamp) {
-		ChatList userChatList = chats.get("" + userId);
+	@Path("user/{user}/read/{timestamp}")
+	public Response readChat(@PathParam("user") String user, @PathParam("timestamp") Long timestamp) {
+		ChatList userChatList = chats.get(user);
 
 		if (userChatList == null) {
 			userChatList = new ChatList();
@@ -67,7 +72,7 @@ public class ChatResource {
 				item.setStatus("read");
 			}
 		}
-		chats.put("" + userId, userChatList);
+		chats.put(user, userChatList);
 
 		return Response.ok().build();
 	}
@@ -93,16 +98,15 @@ public class ChatResource {
 				}
 			}
 		}
-
 		return response;
 	}
 
 	@GET
 	@UnitOfWork
-	@Path("user/{userId}/{timestamp}")
-	public List<ChatItem> getChatList(@PathParam("userId") LongParam userId, @PathParam("timestamp") Long timestamp,
+	@Path("user/{user}/{timestamp}")
+	public List<ChatItem> getChatList(@PathParam("user") String user, @PathParam("timestamp") Long timestamp,
 			@QueryParam("status") String status) {
-		ChatList list = chats.get("" + userId);
+		ChatList list = chats.get(user);
 		if (list == null) {
 			return new ChatList().getChats();
 		} else {
