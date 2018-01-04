@@ -31,9 +31,31 @@
 
 `curl -X GET http://localhost:8080/chat/user/1/1514441805067 -H 'cache-control: no-cache'`
 
+`curl -X GET http://localhost:8080/chat/user/1/1514441805067?status=read -H 'cache-control: no-cache'`
+
+`curl -X GET http://localhost:8080/chat/user/1/1514441805067?status=unread -H 'cache-control: no-cache'`
+
+---
+
+**Marking messages as READ**
+
+`curl -X PUT http://localhost:8080/chat/user/1/read/1515057792329 -H 'cache-control: no-cache'`
+
 ---
 
 **Getting all chats for admin**
 
 `curl -X GET http://localhost:8080/chat/1514465013034 -H 'cache-control: no-cache'`
+
+`curl -X GET http://localhost:8080/chat/1514465013034?status=unread -H 'cache-control: no-cache'`
+
+`curl -X GET http://localhost:8080/chat/1514465013034?staus=read -H 'cache-control: no-cache'`
+
+---
+
+**Getting server time in millis**
+
+`curl -X GET http://localhost:8080/timestamp -H 'cache-control: no-cache'`
+
+---
 
